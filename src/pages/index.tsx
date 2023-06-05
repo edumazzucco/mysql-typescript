@@ -26,6 +26,8 @@ export default function Home() {
     }
   }, [mounted]);
 
+  console.log("users: ", users);
+
   return (
     <main>
       <Form />
