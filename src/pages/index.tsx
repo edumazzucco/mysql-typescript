@@ -9,29 +9,30 @@ export default function Home() {
   const [onEdit, setOnEdit] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
 
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const res = await axios.get("http://localhost:8080");
-        setUsers(res.data.sort((a: any, b: any) => (a.name > b.name ? 1 : -1)));
-        toast.success("Retrived users from DB!");
-      } catch (error) {
-        console.error(error);
-        toast.error("Failed to retrive users from DB. Try again later!");
-      }
-    };
-    if (!mounted) {
-      getUsers();
-      setMounted(true);
+  const getUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080");
+      setUsers(res.data.sort((a: any, b: any) => (a.name > b.name ? 1 : -1)));
+      toast.success("Retrived users from DB!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to retrive users from DB. Try again later!");
     }
+  };
+
+  useEffect(() => {
+    // if (!mounted) {
+    getUsers();
+    //   setMounted(true);
+    // }
   }, [mounted]);
 
   console.log("users: ", users);
 
   return (
     <main>
-      <Form />
-      <Grid users={users} />
+      <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
+      <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
     </main>
   );
 }

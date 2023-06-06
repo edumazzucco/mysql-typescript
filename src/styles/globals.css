@@ -6,6 +6,13 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --input-text-color: #fff; /* Default text color for input elements */
+  --input-background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Default background color for input elements */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +20,13 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --input-text-color: #000; /* Text color for dark theme */
+    --input-background-color: rgba(
+      255,
+      255,
+      255,
+      0.5
+    ); /* Background color for dark theme */
   }
 }
 
@@ -24,4 +38,12 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+input {
+  color: var(--input-text-color); /* Set the text color using a CSS variable */
+  background-color: var(
+    --input-background-color
+  ); /* Set the background color using a CSS variable */
+  /* Add any other necessary styling for your input elements */
 }
